@@ -14,7 +14,7 @@ def zero_sequence(list):
         if( i != 0 ):
             sequence_size = 0
     
-    return largest_sequence
+    return largest_sequence # goofed a little in git lol
 
 # list = [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] # quick test for the code
 # print(zero_sequence(list))
