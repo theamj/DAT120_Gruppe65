@@ -1,1 +1,1 @@
-# Øving 4 - Gruppe 65
+# $\theta$ving 4 - Gruppe 65
