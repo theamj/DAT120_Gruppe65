@@ -14,9 +14,15 @@ testliste2 = [15,7,4]
 
 def pos_growth(list):
     g_units = 0
+    
     for i in range(len(list)): 
-     g_rate = (list)[i] - 5
-     g_units = g_units + g_rate
+     
+        if (list)[i] > 5:
+            g_rate = (list)[i] - 5
+        else:
+            g_rate = 0
+        g_units = g_units + g_rate
+   
     return(g_units)
 
 
@@ -28,15 +34,18 @@ if __name__==  "__main__":
      
 def growth(list):
     g_units = 0
+    
     for i in range(len(list)): 
+        
         g_rate = (list)[i] - 5
         g_units = g_units + g_rate
+        
         if g_units <= 0:
             return 0
+        
     return g_units
 
 if __name__==  "__main__":
-   
     print(growth(testliste))
 
 
@@ -59,6 +68,7 @@ def results(list):
         if g_rate > g_max:
             g_max = g_rate
             d_max = i
+            
     return [g_units, d_max, g_max]
         
 
