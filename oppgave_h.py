@@ -59,7 +59,7 @@ def results(list):
         if g_rate > g_max:
             g_max = g_rate
             d_max = i
-    return [g_units, i, g_max]
+    return [g_units, d_max, g_max]
         
 
 if __name__==  "__main__":
