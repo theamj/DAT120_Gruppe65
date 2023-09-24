@@ -14,10 +14,7 @@ def match_zero_sequence(list):
         if( sequence_size > largest_sequence ):
             largest_sequence = sequence_size
     
-    return largest_sequence # goofed a little in git lol
-
-# list = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] # quick test for the code
-# print(zero_sequence(list))
+    return largest_sequence
 
 
 # Frivillig a - Ta inn ei liste med heltall. 
@@ -41,9 +38,6 @@ def match_sequence(list):
             value = last_number
     
     return largest_sequence, value
-
-# list = [4, 4, 4, 4, 4, 1, 1, 1, 1, 0, 0, 0]
-# print(match_sequence(list))
 
 
 # Frivillig b - Det samme for flyttall, men med en oppgitt toleranse.
@@ -81,21 +75,27 @@ def match_float_sequence(list, margin):
     
     return largest_sequence, value, largest_list
 
-# More testing ! this one creates a list of random numbers between -1.0 and 1.0
-# Then the float_sequence() function is tested on the list with a margin of 0.5 
 
-""" 
-import random
+if __name__ == "__main__": # Forgot this feature existed, thanks Ida!
 
-def randlist(size, min = -1.0, max = 1.0):
-    list = []
+    import random
 
-    for i in range(size):
-        rnum = random.uniform(min, max)
-        list.append(rnum)
+    # Testing ! this one creates a list of random numbers between -1.0 and 1.0
+    # Then the match_float_sequence() function is tested on the list with a margin of 0.5 
 
-    return list
+    def randlist(size, min = -1.0, max = 1.0):
+        list = []
 
-list = randlist(20)
-print(float_sequence(list, 0.5))
-"""
+        for i in range(size):
+            rnum = random.uniform(min, max)
+            list.append(rnum)
+
+        return list
+
+    test_list = [4, 4, 4, 4, 4, 1, 1, 1, 1, 0, 0, 0, 0] # quick test for f) and optional-a
+    float_list = randlist(20)
+    margin = 0.5
+
+    print(f"Largest sequence of zeros: {match_zero_sequence(test_list)}")
+    print(f"Largest sequence of equal numbers: {match_sequence(test_list)}")
+    print(f"Float list function test results with margin {margin}: {match_float_sequence(float_list, margin)}")
