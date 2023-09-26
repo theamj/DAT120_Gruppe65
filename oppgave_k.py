@@ -29,7 +29,9 @@ for index in range(len(temperaturer)):
 
 a, b = beregn_lineær_trend(temperaturer_tidspunkter, temperaturer)
 print(f"Trenden er: verdi = {a}x + {b}")
-if a == 0 print("Det er ingen trend i dette datasettet.")
-elif a < 0 print("Trenden er synkende.")
+if a == 0: 
+    print("Det er ingen trend i dette datasettet.")
+elif a < 0: 
+    print("Trenden er synkende.")
 else:
     print("Trenden er økende")
