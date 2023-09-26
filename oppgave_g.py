@@ -14,10 +14,6 @@ temaet lineær regresjon, minste kvadraters metode.
 """
 
 def beregn_lineær_trend(x_koordinater, y_koordinater):
-    # Sjekk om listene har samme lengde
-    if len(x_koordinater) != len(y_koordinater):
-        raise ValueError("Listene må ha samme lengde")
-
     # Beregn gjennomsnittet av x- og y-verdiene
     gjennomsnitt_x = sum(x_koordinater) / len(x_koordinater)
     gjennomsnitt_y = sum(y_koordinater) / len(y_koordinater)
