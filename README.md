@@ -1,4 +1,3 @@
-# Oving 4 - Gruppe 65
-#testing
+# Oving 4, 10 - Gruppe 65
 
-ingen anelse hva pycache er :[
+ :|
