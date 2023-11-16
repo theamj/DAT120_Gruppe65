@@ -41,6 +41,10 @@ for year in sky_coverage_yearly:
     if missing_data < 65:
         day_count_list.append(good_days)
         year_list.append(year)
+    else:
+        excluded.append(year)
+
+print(excluded)
 
 pylab.plot(year_list, day_count_list)
 
