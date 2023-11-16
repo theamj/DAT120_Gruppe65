@@ -27,7 +27,6 @@ year_list = []
 
 for year in sky_coverage_yearly:
     missing_data = 365 - len(sky_coverage_yearly[year])
-    good_days = 0
     
     for day in sky_coverage_yearly[year]:
         
