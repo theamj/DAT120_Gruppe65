@@ -12,7 +12,6 @@
 
 """
 
-from numpy import NaN
 import pandas as pd
 import pylab
 from del_2_oppgave_f import dict_from_data
@@ -27,6 +26,7 @@ year_list = []
 
 for year in sky_coverage_yearly:
     missing_data = 365 - len(sky_coverage_yearly[year])
+    good_days = 0
     
     for day in sky_coverage_yearly[year]:
         
