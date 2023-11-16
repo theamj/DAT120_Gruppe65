@@ -16,34 +16,53 @@ import pandas as pd
 from numpy import NaN
 import pylab
 from datetime import datetime
-from oppgave_f import match_zero_sequence as sequence
+from oppgave_f import match_number_sequence as sequence
 
-dataset = pd.read_csv('snoedybder_vaer_en_stasjon_dogn.csv', encoding='utf-8', sep=';')
 
-rain_per_year = dict()
+def dict_from_data(dataset, column):
+    value_per_year = dict()
 
-for row in dataset.values:
-    if row[2] is NaN:
-        break
-    date = datetime.strptime(row[2], '%d.%m.%Y')
-    rain = row[4].replace(',', '.')
-    if rain.isnumeric():
-        rain = float(rain)
+    for row in dataset.values:
+        if row[2] is NaN:
+            break
+        date = datetime.strptime(row[2], '%d.%m.%Y')
+        value = row[column].replace(',', '.')
+        if value.isnumeric():
+            value = float(value)
     
-    if date.year not in rain_per_year:
-        rain_per_year[date.year] = []
-    rain_per_year[date.year].append(rain)
+        if date.year not in value_per_year:
+            value_per_year[date.year] = []
+        value_per_year[date.year].append(value)
+        
+    return value_per_year 
 
-
-drought_list = []
-year_list = []
-for year in rain_per_year:
-    drought_list.append(sequence(rain_per_year[year]))
-    year_list.append(year)
-
-pylab.plot(year_list, drought_list)
-
-pylab.xlabel("år")
-pylab.ylabel("dager uten regn")
+if __name__ == '__init__':
     
+    dataset = pd.read_csv('snoedybder_vaer_en_stasjon_dogn.csv', encoding='utf-8', sep=';')
+
+    rain_per_year = dict_from_data(dataset, 4)
+
+    drought_list = []
+    excluded = []
+    year_list = []
+    for year in rain_per_year:
+        dash_count = 0
+        for i in rain_per_year[year]:
+            if i == "-":
+                dash_count += 1
+        
+        missing_data = (365-len(rain_per_year[year])) + dash_count
+        if missing_data < 65:
+            drought_list.append(sequence(rain_per_year[year], 0))
+            year_list.append(year)
+        else:
+            excluded.append(year)
+
+    print(excluded)
+
+    pylab.plot(year_list, drought_list)
+
+    pylab.xlabel("år")
+    pylab.ylabel("dager uten regn")
+
 # %%

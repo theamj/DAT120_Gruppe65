@@ -1,13 +1,13 @@
 # Oppgave f) Lag en funksjon som tar inn ei liste med tall. 
 # Funksjonen skal finne og returnere lengden til den lengste sammenhengende sekvensen av 0-ere i lista.
 
-def match_zero_sequence(list):
+def match_number_sequence(list, match = 0):
 
     sequence_size = 0
     largest_sequence = 0
 
     for i in list:
-        if( i == 0 ):
+        if( i == match ):
             sequence_size += 1
         else:
             sequence_size = 0
@@ -75,7 +75,6 @@ def match_float_sequence(list, margin):
     
     return largest_sequence, value, largest_list
 
-
 if __name__ == "__main__": # Forgot this feature existed, thanks Ida!
 
     import random
@@ -96,6 +95,6 @@ if __name__ == "__main__": # Forgot this feature existed, thanks Ida!
     float_list = randlist(20)
     margin = 0.5
 
-    print(f"Largest sequence of zeros: {match_zero_sequence(test_list)}")
+    print(f"Largest sequence of zeros: {match_number_sequence(test_list)}")
     print(f"Largest sequence of equal numbers: {match_sequence(test_list)}")
     print(f"Float list function test results with margin {margin}: {match_float_sequence(float_list, margin)}")
