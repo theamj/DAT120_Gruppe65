@@ -15,8 +15,6 @@ from numpy import NaN
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-
-
 def dict_from_data(dataset, column):
     value_per_year = dict()
 
@@ -57,6 +55,7 @@ def plot_verdi(day,growth,year):
     plt.title("Growth per year")    
     plt.grid(True)
     plt.show()
+
 if __name__ == '__main__':
     
     dataset = pd.read_csv('snoedybder_vaer_en_stasjon_dogn.csv', encoding='utf-8', sep=';')
@@ -64,29 +63,21 @@ if __name__ == '__main__':
         
     excluded = []
     year_list = []
-   
-   
+    
     for year in temp_per_year:
         dash_count = 0
         for i in temp_per_year[year]:
                 dash_count += 1
         missing_data = (365 - dash_count)
      
-        
         if missing_data < 65:
             
             day_list = []
             growth_list = (growth(temp_per_year[year]))
             for i in range(len(growth_list)):
                 day_list.append(i+1)
-                
             year_list.append(year)
         
             plot_verdi(day_list,growth_list,year)
           
         
-         
-        
-        """pylab.plot(year_list, mean_temp)
-        pylab.xlabel("år")
-        pylab.ylabel("dager uten regn")"""

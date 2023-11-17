@@ -12,12 +12,10 @@ disse gjennomsnittene i ei ny liste. Bruk funksjonen fra del 1 deloppgave e) for
 liste med differanser. Plott både lista over gjennomsnittstemperaturer og lista over
 differanser med måned og år på x-aksen.
 """
-
 import pandas as pd
 from numpy import NaN
 import matplotlib.pyplot as plt
 from datetime import datetime
-
 
 def dict_from_data(dataset, column):
     
@@ -83,7 +81,6 @@ if __name__ == '__main__':
         mean_list = []
         month_list = []
         
-        
         mean_last = 0
         for month in temp_per_year[year]:
             mean_month = mean(temp_per_year[year][month])
@@ -93,10 +90,5 @@ if __name__ == '__main__':
             mean_last = mean_month
             month_list.append(month)
        
-            
-        
-    
-        
         plot_verdi(month_list,mean_list, diff_list, year)
         
-            
