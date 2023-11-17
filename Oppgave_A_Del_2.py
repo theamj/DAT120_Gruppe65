@@ -27,8 +27,8 @@ def les_vaerdata(filnavn):
 
     return vaerdata
 
+if __name__ == "__main__":
+    vaerdata = les_vaerdata('snoedybder_vaer_en_stasjon_dogn.csv')
 
-vaerdata = les_vaerdata('snoedybder_vaer_en_stasjon_dogn.csv')
-
-for dag in vaerdata:
-    print(dag)
+    for dag in vaerdata:
+        print(dag)

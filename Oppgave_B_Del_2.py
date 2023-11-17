@@ -10,50 +10,62 @@ def tell_større_eller_lik_verdi(liste, verdi):
 
     return antall_større_eller_like
 
-skiføre_data = []
+def dager_skifoere():
+    skiføre_data = []
 
-with open('snoedybder_vaer_en_stasjon_dogn.csv', newline='', encoding='utf-8') as csvfile:
-    reader = csv.reader(csvfile, delimiter=';')
-    next(reader)  
+    with open('snoedybder_vaer_en_stasjon_dogn.csv', newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile, delimiter=';')
+        next(reader)  
 
-    for row in reader:
-        dato_str = row[2]
+        for row in reader:
+            dato_str = row[2]
 
-        
-        if dato_str:
-            try:
-                dato = datetime.strptime(dato_str, '%d.%m.%Y')
-                snødybde = row[3]
-
-                
+            
+            if dato_str:
                 try:
-                    snødybde = float(snødybde)
+                    dato = datetime.strptime(dato_str, '%d.%m.%Y')
+                    snødybde = row[3]
+
+                    
+                    try:
+                        snødybde = float(snødybde)
+                    except ValueError:
+                        continue 
+
+                    skiføre_data.append((dato, snødybde))
+
                 except ValueError:
-                    continue 
+                    continue  
 
-                skiføre_data.append((dato, snødybde))
+    vintersesonger = {}
 
-            except ValueError:
-                continue  
+    for dato, snødybde in skiføre_data:
+        år = dato.year
+        måned = dato.month
 
-vintersesonger = {}
+        if måned >= 10:  
+            sesong_start_år = år
+        else:
+            sesong_start_år = år - 1
 
-for dato, snødybde in skiføre_data:
-    år = dato.year
-    måned = dato.month
+        sesong_key = (sesong_start_år, sesong_start_år + 1)
+        
+        if sesong_key not in vintersesonger:
+            vintersesonger[sesong_key] = []
 
-    if måned >= 10:  
-        sesong_start_år = år
-    else:
-        sesong_start_år = år - 1
+        vintersesonger[sesong_key].append(snødybde)
+        
+    antall_dager_med_skiføre = []
+    sesong_list = []
+    for sesong_key, snødybder in vintersesonger.items():
+        sesong_list.append(sesong_key)
+        antall_dager_med_skiføre.append(tell_større_eller_lik_verdi(snødybder, 20))
 
-    sesong_key = (sesong_start_år, sesong_start_år + 1)
-    
-    if sesong_key not in vintersesonger:
-        vintersesonger[sesong_key] = []
+    return antall_dager_med_skiføre, sesong_list
 
-    vintersesonger[sesong_key].append(snødybde)
-
-for sesong_key, snødybder in vintersesonger.items():
-    antall_dager_med_skiføre = tell_større_eller_lik_verdi(snødybder, 20)
-    print(f"Antall dager med skiføre i vintersesong {sesong_key[0]}-{sesong_key[1]}: {antall_dager_med_skiføre}")
+if __name__ == "__main__":
+    indata = dager_skifoere()
+    i = 0
+    for dager in indata[0]:
+        print(f"Antall dager med skiføre i sesong {indata[1][i]}: {dager}")
+        i += 1

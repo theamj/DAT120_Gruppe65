@@ -36,7 +36,7 @@ def dict_from_data(dataset, column):
         
     return value_per_year 
 
-if __name__ == '__init__':
+if __name__ == '__main__':
     
     dataset = pd.read_csv('snoedybder_vaer_en_stasjon_dogn.csv', encoding='utf-8', sep=';')
 
